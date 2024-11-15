@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>Gradual Delay Redirect</title>
+    <script type="text/javascript">
+        const sites = ["https://example1.com", "https://example2.com"];
+        let currentIndex = 0;
+        let delay = 1; // 1밀리초부터 시작하여 점차 증가
+
+        function gradualRedirect() {
+            window.location.replace(sites[currentIndex]);
+            currentIndex = (currentIndex + 1) % sites.length;
+            delay += 1; // 각 리다이렉트마다 지연을 1밀리초씩 증가
+            setTimeout(gradualRedirect, delay);
+        }
+
+        window.onload = gradualRedirect;
+    </script>
+</head>
+<body>
+    <p>점진적으로 증가하는 지연 시간으로 리다이렉트를 반복합니다.</p>
+</body>
+</html>
